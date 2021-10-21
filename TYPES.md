@@ -47,3 +47,49 @@ typeof v;   // "object"
 var v = function(){};
 typeof v;   // "function"
 ```
+
+## Undefined vs. undeclared
+
+*Undefined* - there is definitely a variable, but it has no value just yet.
+*Undeclared* - the variable does not exist in any scope that JS has access to.
+
+* *unitialized* - variable was created but unitialized
+
+## Special Values 
+
+### NaN
+Type: Number (invalid)
+Literally: "not a number". But, it really is an invalid number.
+
+```javascript
+var myage = Number("0o46");    // 38
+var myNextAge = Number("39");  // 39
+var myCatsAge = Number("n/a"); // NaN
+myAge - "my son's age";        // NaN
+
+myCatsAge === myCatsAge;       // false, because IEEE said NaN does not equal to each other
+
+// Pre-ES6
+isNaN(myAge);                  // false
+isNaN(myCatsAge);              // true
+isNaN("my son's age");         // true, because isNaN first coerces the value into NaN and then checks if it is NaN
+
+// ES6
+Number.isNaN(myCatsAge);       // true
+Number.isNaN("my son's age");  // false, this is a new ES6 operation that does not coerce into NaN, therefore returns reasonable result
+```
+
+### Negative Zero
+
+```javascript
+var trendRate = 0;
+trendRate === -0;       // true
+
+trendRate.toString();   // "0"
+trendRate === 0;        // true
+trendRate < 0;          // false
+trendRate > 0;          // false
+
+Object.is(trendRate, -0);   // true
+Object.is(trendRate, 0);    // false
+```
