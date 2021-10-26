@@ -93,3 +93,28 @@ trendRate > 0;          // false
 Object.is(trendRate, -0);   // true
 Object.is(trendRate, 0);    // false
 ```
+
+
+## Fundamental Objects (Built-In Object, Native Functions)
+
+Always use the **new** keyword with the following:
+* Object()
+* Array()
+* Function()
+* Date()
+* RegExp()
+* Error()
+
+*Don't* use **new** with:
+* String()
+* Number()
+* Boolean()
+
+```js
+var yesterday = new Date("March 6, 2019");
+yesterday.toUTCString();
+// "Wed, 06 Mar 2019 06:00:00 GMT"
+
+var gpa = String(college.GPA);
+// "3.8"
+```
